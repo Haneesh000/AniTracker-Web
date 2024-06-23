@@ -10,6 +10,7 @@ function Favourites() {
     React.useEffect(() => {
         (async () => {
             const userFavourites = JSON.parse(localStorage.getItem("favourites"));
+            console.log(userFavourites)
             if (userFavourites === null || userFavourites === undefined || userFavourites === []) {
                 setFavourites([]);
             } else {
@@ -50,7 +51,6 @@ function Favourites() {
             <Container>
                 <h3>Favourites</h3>
                 <hr/>
-                {favourites.length === 0 ? <h5>No favourites found</h5> : null}
                 {
                     favourites.map((anime, index) => {
                         return <div key={index} style={{

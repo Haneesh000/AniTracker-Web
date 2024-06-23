@@ -89,7 +89,7 @@ function Search() {
                                 marginTop: "1rem"
                             }}>
                                 <Button variant="primary" style={{marginRight: "0.3rem"}} onClick={(e) => {
-                                    const prevArr = JSON.parse(window.localStorage.getItem("favourite"));
+                                    const prevArr = JSON.parse(window.localStorage.getItem("favourites"));
                                     let current = [];
                                     if(prevArr === null || prevArr === undefined || prevArr.length === 0)
                                         current = JSON.stringify([Number(anime.mal_id)]);
