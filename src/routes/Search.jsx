@@ -95,7 +95,7 @@ function Search() {
                                         current = JSON.stringify([Number(anime.mal_id)]);
                                     else
                                         current = JSON.stringify([...prevArr, Number(anime.mal_id)]);
-                                    window.localStorage.setItem("favourite", current);
+                                    window.localStorage.setItem("favourites", current);
                                     alert("Added to favourites!");
                                 }}>
                                     <FontAwesomeIcon icon={faHeart} /> Favourite
