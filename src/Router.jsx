@@ -2,6 +2,7 @@ import React from "react";
 import {createBrowserRouter, RouterProvider, Route, Link} from "react-router-dom";
 import Nav from "./components/NavBar";
 import Search from "./routes/Search";
+import Favourites from "./routes/Favourites";
 
 const router = createBrowserRouter([
     {
@@ -11,6 +12,10 @@ const router = createBrowserRouter([
     {
         path: "/search",
         element: <Search />
+    },
+    {
+        path: "/favourites",
+        element: <Favourites />
     }
 ]);
 

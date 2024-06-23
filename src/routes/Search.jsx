@@ -25,6 +25,27 @@ function Search() {
         })();
     }, []);
 
+    function calculateWidth() {
+        let minWidth = 506;
+        let maxWidth = 1536;
+        let minPercentage = 45;
+        let maxPercentage = 20;
+
+        let currentWidth = window.innerWidth;
+
+        // Ensure the current width is within the given range
+        if (currentWidth < minWidth) {
+            return minPercentage;
+        } else if (currentWidth > maxWidth) {
+            return maxPercentage;
+        }
+
+        // Calculate the percentage based on the current width
+        let percentageWidth = minPercentage + (maxPercentage - minPercentage) * (currentWidth - minWidth) / (maxWidth - minWidth);
+
+        return percentageWidth;
+    }
+
     console.log(searchResults)
 
     return <div>
@@ -43,7 +64,7 @@ function Search() {
                         minHeight: "17rem",
                         maxHeight: "22rem",
                     }}>
-                        <div className="imageContainer" style={{minWidth: "45%", maxWidth: "45%"}}>
+                        <div className="imageContainer" style={{minWidth: calculateWidth()+"%", width: "fit-content", maxWidth: "45%"}}>
                             <img
                                 style={{
                                     height: "12rem",
@@ -67,7 +88,18 @@ function Search() {
                                 justifyContent: "space-between",
                                 marginTop: "1rem"
                             }}>
-                                <Button variant="primary"><FontAwesomeIcon icon={faHeart} /> Favourite</Button>
+                                <Button variant="primary" style={{marginRight: "0.3rem"}} onClick={(e) => {
+                                    const prevArr = JSON.parse(window.localStorage.getItem("favourite"));
+                                    let current = [];
+                                    if(prevArr === null || prevArr === undefined || prevArr.length === 0)
+                                        current = JSON.stringify([Number(anime.mal_id)]);
+                                    else
+                                        current = JSON.stringify([...prevArr, Number(anime.mal_id)]);
+                                    window.localStorage.setItem("favourite", current);
+                                    alert("Added to favourites!");
+                                }}>
+                                    <FontAwesomeIcon icon={faHeart} /> Favourite
+                                </Button>
                                 <Button variant="primary"><FontAwesomeIcon icon={faPlus} /> Watchlist</Button>
                             </div>
                         </div>

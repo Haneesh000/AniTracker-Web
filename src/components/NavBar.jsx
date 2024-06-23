@@ -1,11 +1,12 @@
 import React from "react";
 import Container from "react-bootstrap/Container";
 import Navbar from "react-bootstrap/Navbar";
+import Nav from "react-bootstrap/Nav";
 import {InputGroup, Form, Button} from "react-bootstrap";
 import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 import {faSearch} from "@fortawesome/free-solid-svg-icons";
 
-function Nav() {
+function MyNavbar() {
     const [width, setWidth] = React.useState(window.innerWidth);
     const searchBar = React.createRef();
 
@@ -41,16 +42,17 @@ function Nav() {
                     </Navbar.Brand>
                     <Navbar.Toggle />
                     <Navbar.Collapse className="justify-content-end">
+                        <Nav.Link href="/favourites">Favourites</Nav.Link>
                         <Navbar.Text>
                             <InputGroup className="mb-3">
                                 {
                                     width <= 550 ?
-                                        <InputGroup.Text>
+                                        <InputGroup.Text style={{position: "relative", top: "0.6rem", marginLeft: "0.3rem"}}>
                                             <a href="/search">
                                                 <FontAwesomeIcon icon={faSearch} />
                                             </a>
                                         </InputGroup.Text> :
-                                        <>
+                                        <span style={{display: "flex", position:"relative", top: "0.6rem", marginLeft: "3rem"}}>
                                             <InputGroup.Text>
                                                 <FontAwesomeIcon icon={faSearch} />
                                             </InputGroup.Text>
@@ -58,7 +60,7 @@ function Nav() {
                                             <Button variant="primary" onClick={handleSearch} style={{color: "#fff"}}>
                                                 Search
                                             </Button>
-                                        </>
+                                        </span>
                                 }
                             </InputGroup>
                         </Navbar.Text>
@@ -69,4 +71,4 @@ function Nav() {
     );
 }
 
-export default Nav;
+export default MyNavbar;
